@@ -23,6 +23,7 @@ body {
 .media-body {
     width: 100%;
     display: inline-block;
+    color: #333;
 }
 
 p {
