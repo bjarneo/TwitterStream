@@ -2,6 +2,10 @@
   "name": "TwitterStream",
   "version": "1.0.0",
   "description": "Node.js app streaming twitter messages",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/bjarneo/TwitterStream.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
