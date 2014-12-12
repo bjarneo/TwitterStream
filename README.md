@@ -17,14 +17,15 @@ You need to add a config-file to root folder.
 }
 ```
 
+###Note:
+Remember to run this command to compile the jsx. http://facebook.github.io/react/docs/tooling-integration.html#jsx <br/>
+```bash
+npm install -g react-tools
+jsx --watch public/js public/js-prod
+```
+
 ###Usage:
 ```bash
 npm install
 node index.js
-```
-
-###Note:
-If you are changing the twitter-stream-app.js, remember to precompiled it with react-tools. http://facebook.github.io/react/docs/tooling-integration.html#jsx <br/>
-```bash
-jsx --watch public/js public/js-prod
 ```
