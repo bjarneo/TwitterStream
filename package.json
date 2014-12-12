@@ -1,0 +1,16 @@
+{
+  "name": "TwitterStream",
+  "version": "1.0.0",
+  "description": "Node.js app streaming twitter messages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+      "express": "~4.10.5",
+      "socket.io": "~1.2.0",
+      "node-tweet-stream": "~1.6.0"
+  },
+  "author": "Bjarne Oeverli",
+  "license": "MIT"
+}
