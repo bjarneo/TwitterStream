@@ -10,10 +10,10 @@ var TwitterStreamItem = React.createClass({
             return (
                 <div className="media msg">
                     <span className="userColor" style={userColor}></span>
-                    <a className="pull-left user-image" href="#">
-                        <img className="media-object" src={tweet.user.profileImage} />
-                    </a>
                     <div className="media-body">
+                        <a className="pull-left user-image" href="#">
+                            <img className="media-object" src={tweet.user.profileImage} />
+                        </a>
                         <small className="pull-right time">
                             <i className="glyphicon glyphicon-time"></i> {tweet.createdAt}
                         </small>
