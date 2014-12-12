@@ -33,7 +33,7 @@ var TwitterStreamItem = React.createClass({
 var TwitterStreamList = React.createClass({
     render: function() {
         return (
-            <div className="twitter-list message-wrap col-lg-8">
+            <div className="twitter-list message-wrap col-lg-12">
                 <TwitterStreamItem data={this.props.data}></TwitterStreamItem>
             </div>
         );
