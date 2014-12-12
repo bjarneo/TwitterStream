@@ -14,11 +14,11 @@ var TwitterStreamItem = React.createClass({
                         <img className="media-object" src={tweet.user.profileImage} />
                     </a>
                     <div className="media-body">
-                        <small class="pull-right time">
-                            <i class="glyphicon glyphicon-time"></i> {tweet.createdAt}
+                        <small className="pull-right time">
+                            <i className="glyphicon glyphicon-time"></i> {tweet.createdAt}
                         </small>
                         <h5 className="media-heading">{tweet.user.name} ~ {tweet.user.screenName}</h5>
-                        <p class="col-lg-10">{tweet.text}</p>
+                        <p className="col-lg-10">{tweet.text}</p>
                     </div>
                 </div>
             );

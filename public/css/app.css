@@ -33,12 +33,22 @@ body {
     oveflow: auto;
 }
 
+p {
+    padding-left: 0px !important;
+}
+
+h5 {
+    margin-top: 5px !important;
+}
+
 .user-image {
     padding: 5px;
 }
 
 .time {
     color: #bfbfbf;
+    margin-right: 5px;
+    margin-top: 5px;
 }
 
 .msg-wrap .media-heading {
