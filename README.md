@@ -6,7 +6,7 @@ Twitter stream based on Node.js and React.js. Just a React.js test.
 Feel free to test the app here: <a href="http://bjarneo.codes:3000/">http://bjarneo.codes:3000/</a>
 <br /><br />
 ## Installation
-You need to add a config-file to root folder.
+You need to add a config-file to root folder. You can get this information from twitter: https://apps.twitter.com/
 ###config.js
 ```javascript
 {
