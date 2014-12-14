@@ -18,7 +18,7 @@ var TwitterStreamItem = React.createClass({
                             <i className="glyphicon glyphicon-time"></i> {tweet.createdAt}
                         </small>
                         <h3 className="media-heading">
-                            {tweet.user.name} ~<span className="userName"><a href={userUrl}>{tweet.user.screenName}</a></span>
+                            {tweet.user.name} <span className="userName"><a href={userUrl}>@{tweet.user.screenName}</a></span>
                         </h3>
                         <p className="col-lg-10">{tweet.text}</p>
                     </div>
