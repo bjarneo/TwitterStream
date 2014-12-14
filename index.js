@@ -18,6 +18,10 @@ var express = require('express'),
 });
 
 twitter.on('tweet', function(tweet) {
+    if (tweet.lang !== 'en') {
+        return;
+    }
+
     io.emit('tweet', {
         'user': {
             'name': tweet.user.name,

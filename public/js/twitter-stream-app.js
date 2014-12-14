@@ -5,7 +5,7 @@ var TwitterStreamItem = React.createClass({
         var tweetNodes = this.props.data.map(function(tweet) {
             var userColor = {
                 background: '#' + tweet.user.backgroundColor
-            };
+            }, userUrl = 'http://www.twitter.com/' + tweet.user.screenName;
 
             return (
                 <div className="media msg">
@@ -17,7 +17,9 @@ var TwitterStreamItem = React.createClass({
                         <small className="pull-right time">
                             <i className="glyphicon glyphicon-time"></i> {tweet.createdAt}
                         </small>
-                        <h5 className="media-heading">{tweet.user.name} ~ {tweet.user.screenName}</h5>
+                        <h3 className="media-heading">
+                            {tweet.user.name} ~<span className="userName"><a href={userUrl}>{tweet.user.screenName}</a></span>
+                        </h3>
                         <p className="col-lg-10">{tweet.text}</p>
                     </div>
                 </div>
