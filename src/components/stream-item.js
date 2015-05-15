@@ -1,9 +1,11 @@
 'use strict';
 
-var React = require('react');
+var React = require('react/addons');
 
 var TwitterStreamItem = React.createClass({
     displayName: 'StreamItem',
+
+    mixins: [React.addons.PureRenderMixin],
 
     propTypes: {
         id: React.PropTypes.string.isRequired,
