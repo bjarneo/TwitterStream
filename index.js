@@ -4,6 +4,7 @@ var TweetStream = require('node-tweet-stream'),
     http = require('http'),
     express = require('express'),
     socketIO = require('socket.io'),
+    transformTweet = require('./src/tweet-transform'),
     config = require('./config.json');
 
 var app = express(),
@@ -26,18 +27,8 @@ twitter.on('tweet', function(tweet) {
         return;
     }
 
-    /* jshint camelcase: false */
-    io.emit('tweet', {
-        'user': {
-            'name': tweet.user.name,
-            'screenName': tweet.user.screen_name,
-            'backgroundColor': tweet.user.profile_background_color,
-            'profileImage': tweet.user.profile_image_url
-        },
-        'text': tweet.text,
-        'createdAt': tweet.created_at
-    });
-    /* jshint camelcase: true */
+    tweet = transformTweet(tweet);
+    io.emit('tweet', tweet);
 });
 
 app.use(express.static(__dirname + '/public'));
