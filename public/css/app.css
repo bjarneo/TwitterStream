@@ -34,6 +34,11 @@ body {
     padding: 5px;
 }
 
+.media-object {
+    height: 48px;
+    width: 48px;
+}
+
 .media-heading {
     margin-top: 2px;
 }
