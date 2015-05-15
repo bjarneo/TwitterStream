@@ -7,7 +7,8 @@ var TweetStream = require('node-tweet-stream'),
     transformTweet = require('./src/tweet-transform'),
     config = require('./config.json');
 
-var app = express(),
+var port = process.env.PORT || 3000,
+    app = express(),
     server = http.Server(app),
     io = socketIO(server),
     twitter = new TweetStream(config.auth),
@@ -47,6 +48,6 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-server.listen(3000, function() {
-    console.log('listening on *:3000');
+server.listen(port, function() {
+    console.log('http server listening on *:' + port);
 });
