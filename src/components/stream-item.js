@@ -6,7 +6,7 @@ var TwitterStreamItem = React.createClass({
     displayName: 'StreamItem',
 
     propTypes: {
-        id: React.PropTypes.number.isRequired,
+        id: React.PropTypes.string.isRequired,
         text: React.PropTypes.string.isRequired,
         createdAt: React.PropTypes.string.isRequired,
         user: React.PropTypes.shape({

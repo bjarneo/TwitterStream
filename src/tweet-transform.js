@@ -3,7 +3,7 @@
 module.exports = function(tweet) {
     /* jshint camelcase: false */
     return {
-        id: tweet.id,
+        id: tweet.id_str,
         user: {
             name: tweet.user.name,
             screenName: tweet.user.screen_name,
