@@ -21,6 +21,7 @@ config.keywords.forEach(function(keyword) {
 
 // Send tweet history to new clients
 io.on('connection', function(socket) {
+    socket.emit('item-limit', config.history.maxItems);
     tweetHistory.forEach(function(tweet) {
         socket.emit('tweet', tweet);
     });
