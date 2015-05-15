@@ -1,11 +1,15 @@
 'use strict';
 
-var express = require('express'),
-    app = express(),
-    http = require('http').Server(app),
-    io = require('socket.io')(http),
-    config = require('./config.json'),
-    twitter = require('node-tweet-stream')(config);
+var TweetStream = require('node-tweet-stream'),
+    http = require('http'),
+    express = require('express'),
+    socketIO = require('socket.io'),
+    config = require('./config.json');
+
+var app = express(),
+    server = http.Server(app),
+    io = socketIO(server),
+    twitter = new TweetStream(config);
 
 // What keywords to track
 [
