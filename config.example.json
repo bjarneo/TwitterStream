@@ -1,6 +1,15 @@
 {
-    "consumer_key": "",
-    "consumer_secret": "",
-    "token": "",
-    "token_secret": ""
+    "auth": {
+        "consumer_key": "",
+        "consumer_secret": "",
+        "token": "",
+        "token_secret": ""
+    },
+
+    "keywords": [
+        "JavaScript",
+        "node.js",
+        "nodejs",
+        "python"
+    ]
 }

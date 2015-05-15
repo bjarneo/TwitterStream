@@ -10,15 +10,10 @@ var TweetStream = require('node-tweet-stream'),
 var app = express(),
     server = http.Server(app),
     io = socketIO(server),
-    twitter = new TweetStream(config);
+    twitter = new TweetStream(config.auth);
 
-// What keywords to track
-[
-    'JavaSript',
-    'node.js',
-    'nodejs',
-    'python'
-].forEach(function(keyword) {
+// Subscribe to configured keywords
+config.keywords.forEach(function(keyword) {
     twitter.track(keyword);
 });
 
