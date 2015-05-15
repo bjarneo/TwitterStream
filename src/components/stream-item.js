@@ -3,6 +3,8 @@
 var React = require('react');
 
 var TwitterStreamItem = React.createClass({
+    displayName: 'StreamItem',
+
     render: function() {
         var tweetNodes = this.props.data.map(function(tweet) {
             var userColor = {

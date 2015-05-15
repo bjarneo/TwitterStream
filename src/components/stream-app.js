@@ -5,6 +5,8 @@ var io = require('socket.io-client');
 var TwitterStreamList = require('./stream-list');
 
 var TwitterStreamApp = React.createClass({
+    displayName: 'StreamApp',
+
     getInitialState: function() {
         return {
             tweets: [],

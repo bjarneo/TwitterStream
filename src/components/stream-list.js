@@ -4,6 +4,8 @@ var React = require('react');
 var TwitterStreamItem = require('./stream-item');
 
 var TwitterStreamList = React.createClass({
+    displayName: 'StreamList',
+
     render: function() {
         return (
             <div className="twitter-list message-wrap col-lg-12">
