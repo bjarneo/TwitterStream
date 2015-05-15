@@ -1,11 +1,9 @@
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 
 var TwitterStreamItem = React.createClass({
     displayName: 'StreamItem',
-
-    mixins: [React.addons.PureRenderMixin],
 
     propTypes: {
         id: React.PropTypes.string.isRequired,
@@ -17,6 +15,10 @@ var TwitterStreamItem = React.createClass({
             backgroundColor: React.PropTypes.string.isRequired,
             profileImage: React.PropTypes.string.isRequired
         })
+    },
+
+    shouldComponentUpdate: function(nextProps) {
+        return this.props.id !== nextProps.id;
     },
 
     /* jshint quotmark:false */

@@ -32,8 +32,7 @@ module.exports = {
 
     resolve: {
         alias: production ? {
-            'react/addons': 'react/dist/react-with-addons.min.js',
-            'react': 'react/dist/react-with-addons.min.js'
+            'react': 'react/dist/react.min.js'
         } : {}
     }
 };
