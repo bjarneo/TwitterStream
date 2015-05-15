@@ -6,11 +6,12 @@ var path = require('path');
 var production = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    devtool: 'eval',
+    devtool: production ? null : 'eval',
     module: {
         loaders: [
             { test: /\.jsx?$/, loaders: ['jsx?harmony'], exclude: /node_modules/ }
-        ]
+        ],
+        noParse: [/react(-with-addons)?\.min\.js/]
     },
 
     output: {
@@ -27,5 +28,12 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin()
     ] : [
         new webpack.NoErrorsPlugin()
-    ]
+    ],
+
+    resolve: {
+        alias: production ? {
+            'react/addons': 'react/dist/react-with-addons.min.js',
+            'react': 'react/dist/react-with-addons.min.js'
+        } : {}
+    }
 };
