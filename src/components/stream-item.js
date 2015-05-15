@@ -5,34 +5,42 @@ var React = require('react');
 var TwitterStreamItem = React.createClass({
     displayName: 'StreamItem',
 
+    propTypes: {
+        id: React.PropTypes.number.isRequired,
+        text: React.PropTypes.string.isRequired,
+        createdAt: React.PropTypes.string.isRequired,
+        user: React.PropTypes.shape({
+            name: React.PropTypes.string.isRequired,
+            screenName: React.PropTypes.string.isRequired,
+            backgroundColor: React.PropTypes.string.isRequired,
+            profileImage: React.PropTypes.string.isRequired
+        })
+    },
+
     /* jshint quotmark:false */
     render: function() {
-        var tweetNodes = this.props.data.map(function(tweet) {
-            var userColor = {
-                background: '#' + tweet.user.backgroundColor
-            }, userUrl = 'http://www.twitter.com/' + tweet.user.screenName;
-
-            return (
-                <div className="media msg">
-                    <span className="userColor" style={userColor}></span>
-                    <div className="media-body">
-                        <a className="pull-left user-image" href="#">
-                            <img className="media-object" src={tweet.user.profileImage} />
-                        </a>
-                        <small className="pull-right time">
-                            <i className="glyphicon glyphicon-time"></i> {tweet.createdAt}
-                        </small>
-                        <h3 className="media-heading">
-                            {tweet.user.name} <span className="userName"><a href={userUrl}>@{tweet.user.screenName}</a></span>
-                        </h3>
-                        <p className="col-lg-10">{tweet.text}</p>
-                    </div>
-                </div>
-            );
-        });
+        var user = this.props.user,
+            userStyle = { background: '#' + user.backgroundColor },
+            userUrl = 'http://www.twitter.com/' + user.screenName;
 
         return (
-            <div className="twitter-item">{tweetNodes}</div>
+            <div className="twitter-item">
+                <div className="media msg">
+                    <span className="userColor" style={userStyle}></span>
+                    <div className="media-body">
+                        <a className="pull-left user-image" href="#">
+                            <img className="media-object" src={user.profileImage} />
+                        </a>
+                        <small className="pull-right time">
+                            <i className="glyphicon glyphicon-time"></i> {this.props.createdAt}
+                        </small>
+                        <h3 className="media-heading">
+                            {user.name} <span className="userName"><a href={userUrl}>@{user.screenName}</a></span>
+                        </h3>
+                        <p className="col-lg-10">{this.props.text}</p>
+                    </div>
+                </div>
+            </div>
         );
     }
 });

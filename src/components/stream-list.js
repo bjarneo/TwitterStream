@@ -6,11 +6,19 @@ var TwitterStreamItem = require('./stream-item');
 var TwitterStreamList = React.createClass({
     displayName: 'StreamList',
 
+    propTypes: {
+        tweets: React.PropTypes.array.isRequired
+    },
+
     /* jshint quotmark:false */
     render: function() {
         return (
             <div className="twitter-list message-wrap col-lg-12">
-                <TwitterStreamItem data={this.props.data}></TwitterStreamItem>
+                {
+                    this.props.tweets.map(function(tweet) {
+                        return <TwitterStreamItem {...tweet} />;
+                    })
+                }
             </div>
         );
     }
