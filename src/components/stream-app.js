@@ -11,13 +11,17 @@ var TwitterStreamApp = React.createClass({
         };
     },
 
+    onTweetReceived: function(tweet) {
+        var tweets = this.state.tweets.slice();
+        tweets.unshift(tweet);
+        this.setState({ tweets: tweets });
+    },
+
     componentDidMount: function() {
-        var socket = io();
+        this.socket = io();
 
-        socket.on('tweet', function(tweet) {
-            var tweets = this.state.tweets.slice();
-
-            tweets.unshift(tweet);
+        this.socket.on('tweet', this.onTweetReceived);
+    },
 
             this.setState({ tweets: tweets });
         }.bind(this));
