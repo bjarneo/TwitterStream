@@ -18,11 +18,10 @@ var TwitterStreamApp = React.createClass({
         this.setState({ itemLimit: limit });
     },
 
-    onTweetReceived: function(tweet) {
-        var tweets = this.state.tweets.slice();
-        tweets.unshift(tweet);
+    onTweetsReceived: function(items) {
+        var tweets = [].concat(items, this.state.tweets.slice());
 
-        while (tweets.length > this.state.itemLimit) {
+        while (tweets.length >= this.state.itemLimit) {
             tweets.pop();
         }
 
@@ -33,7 +32,7 @@ var TwitterStreamApp = React.createClass({
         this.socket = io();
 
         this.socket.on('item-limit', this.onItemLimitChange);
-        this.socket.on('tweet', this.onTweetReceived);
+        this.socket.on('tweets', this.onTweetsReceived);
     },
 
     componentWillUnmount: function() {

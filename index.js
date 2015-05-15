@@ -22,9 +22,7 @@ config.keywords.forEach(function(keyword) {
 // Send tweet history to new clients
 io.on('connection', function(socket) {
     socket.emit('item-limit', config.history.maxItems);
-    tweetHistory.forEach(function(tweet) {
-        socket.emit('tweet', tweet);
-    });
+    socket.emit('tweets', tweetHistory);
 });
 
 twitter.on('tweet', function(tweet) {
@@ -33,10 +31,10 @@ twitter.on('tweet', function(tweet) {
     }
 
     tweet = transformTweet(tweet);
-    io.emit('tweet', tweet);
+    io.emit('tweets', [tweet]);
 
     // Add tweet to history and ensure we are within the max items limit
-    if (tweetHistory.length > config.history.maxItems) {
+    while (tweetHistory.length >= config.history.maxItems) {
         tweetHistory.shift();
     }
 
