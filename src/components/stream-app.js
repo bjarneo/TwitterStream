@@ -40,6 +40,7 @@ var TwitterStreamApp = React.createClass({
         this.socket.disconnect();
     },
 
+    /* jshint quotmark:false */
     render: function() {
         return (
             <div className="TwitterStream">
