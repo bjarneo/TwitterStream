@@ -25,33 +25,29 @@ var TwitterStreamItem = React.createClass({
     /* jshint quotmark:false */
     render: function() {
         var user = this.props.user,
-            userStyle = { background: '#' + user.backgroundColor },
+            userStyle = { borderColor: '#' + user.backgroundColor },
             userUrl = 'http://www.twitter.com/' + user.screenName;
 
         return (
-            <div className="twitter-item">
-                <div className="media msg">
-                    <hr className="user-color" style={userStyle} />
-                    <div className="media-body">
-                        <a className="pull-left user-image" href="#">
-                            <img className="media-object" src={user.profileImage} />
-                        </a>
+            <li style={userStyle}>
+                <a className="pull-left user-image" href="#">
+                    <img className="media-object" src={user.profileImage} />
+                </a>
 
-                        <TweetDate date={this.props.createdAt} />
+                <TweetDate date={this.props.createdAt} />
 
-                        <h3 className="media-heading">
-                            <span className="user-real-name">
-                                {user.name}&nbsp;
-                            </span>
+                <h3 className="media-heading">
+                    <span className="user-real-name">
+                        {user.name}&nbsp;
+                    </span>
 
-                            <a href={userUrl} className="user-screen-name">
-                                @{user.screenName}
-                            </a>
-                        </h3>
-                        <p className="col-lg-10">{this.props.text}</p>
-                    </div>
-                </div>
-            </div>
+                    <a href={userUrl} className="user-screen-name">
+                        @{user.screenName}
+                    </a>
+                </h3>
+
+                <p className="col-lg-10">{this.props.text}</p>
+            </li>
         );
     }
 });

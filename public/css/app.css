@@ -9,26 +9,17 @@ body {
     color: #f0f0f0;
 }
 
-.user-color {
-    height: 5px;
-    border: 0;
-    margin: 0;
-}
-
 .user-screen-name {
     color: #DD4E4E;
 }
 
-.msg {
+.tweet-list > li {
+    list-style: none;
     margin: 0 0 10px 0;
     background-color: #323236;
     overflow: hidden;
+    border-top: 5px solid transparent;
     border-radius: 3px;
-}
-
-.media-body {
-    width: 100%;
-    display: inline-block;
     color: #f0f0f0;
     font-size: 14pt;
     padding: 5px;

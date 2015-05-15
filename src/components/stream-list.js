@@ -13,13 +13,11 @@ var TwitterStreamList = React.createClass({
     /* jshint quotmark:false */
     render: function() {
         return (
-            <div className="twitter-list message-wrap col-lg-12">
-                {
-                    this.props.tweets.map(function(tweet) {
-                        return <TwitterStreamItem key={tweet.id} {...tweet} />;
-                    })
-                }
-            </div>
+            <ul className="tweet-list col-lg-12">
+                {this.props.tweets.map(function(tweet) {
+                    return <TwitterStreamItem key={tweet.id} {...tweet} />;
+                })}
+            </ul>
         );
     }
 });

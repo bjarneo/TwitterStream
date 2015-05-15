@@ -42,9 +42,7 @@ var TwitterStreamApp = React.createClass({
     /* jshint quotmark:false */
     render: function() {
         return (
-            <div className="TwitterStream">
-                <TwitterStreamList tweets={this.state.tweets} />
-            </div>
+            <TwitterStreamList tweets={this.state.tweets} />
         );
     }
 });
