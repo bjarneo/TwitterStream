@@ -23,8 +23,8 @@ var TwitterStreamApp = React.createClass({
         this.socket.on('tweet', this.onTweetReceived);
     },
 
-            this.setState({ tweets: tweets });
-        }.bind(this));
+    componentWillUnmount: function() {
+        this.socket.disconnect();
     },
 
     render: function() {
