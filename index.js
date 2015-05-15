@@ -26,6 +26,7 @@ twitter.on('tweet', function(tweet) {
         return;
     }
 
+    /* jshint camelcase: false */
     io.emit('tweet', {
         'user': {
             'name': tweet.user.name,
@@ -36,6 +37,7 @@ twitter.on('tweet', function(tweet) {
         'text': tweet.text,
         'createdAt': tweet.created_at
     });
+    /* jshint camelcase: true */
 });
 
 app.use(express.static(__dirname + '/public'));
