@@ -11,5 +11,9 @@
         "node.js",
         "nodejs",
         "python"
-    ]
+    ],
+
+    "history": {
+        "maxItems": 500
+    }
 }

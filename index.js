@@ -10,11 +10,19 @@ var TweetStream = require('node-tweet-stream'),
 var app = express(),
     server = http.Server(app),
     io = socketIO(server),
-    twitter = new TweetStream(config.auth);
+    twitter = new TweetStream(config.auth),
+    tweetHistory = [];
 
 // Subscribe to configured keywords
 config.keywords.forEach(function(keyword) {
     twitter.track(keyword);
+});
+
+// Send tweet history to new clients
+io.on('connection', function(socket) {
+    tweetHistory.forEach(function(tweet) {
+        socket.emit('tweet', tweet);
+    });
 });
 
 twitter.on('tweet', function(tweet) {
@@ -24,6 +32,13 @@ twitter.on('tweet', function(tweet) {
 
     tweet = transformTweet(tweet);
     io.emit('tweet', tweet);
+
+    // Add tweet to history and ensure we are within the max items limit
+    if (tweetHistory.length > config.history.maxItems) {
+        tweetHistory.shift();
+    }
+
+    tweetHistory.push(tweet);
 });
 
 app.use(express.static(__dirname + '/public'));
