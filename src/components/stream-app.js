@@ -7,9 +7,13 @@ var TwitterStreamList = require('./stream-list');
 var TwitterStreamApp = React.createClass({
     displayName: 'StreamApp',
 
+    propTypes: {
+        initialTweets: React.PropTypes.array
+    },
+
     getInitialState: function() {
         return {
-            tweets: [],
+            tweets: this.props.initialTweets || [],
             itemLimit: 1000
         };
     },
