@@ -16,7 +16,7 @@ var TwitterStreamList = React.createClass({
             <div className="twitter-list message-wrap col-lg-12">
                 {
                     this.props.tweets.map(function(tweet) {
-                        return <TwitterStreamItem {...tweet} />;
+                        return <TwitterStreamItem key={tweet.id} {...tweet} />;
                     })
                 }
             </div>
