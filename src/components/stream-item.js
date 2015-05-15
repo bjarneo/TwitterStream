@@ -31,7 +31,7 @@ var TwitterStreamItem = React.createClass({
         return (
             <div className="twitter-item">
                 <div className="media msg">
-                    <hr className="userColor" style={userStyle} />
+                    <hr className="user-color" style={userStyle} />
                     <div className="media-body">
                         <a className="pull-left user-image" href="#">
                             <img className="media-object" src={user.profileImage} />
@@ -40,7 +40,13 @@ var TwitterStreamItem = React.createClass({
                         <TweetDate date={this.props.createdAt} />
 
                         <h3 className="media-heading">
-                            {user.name} <span className="userName"><a href={userUrl}>@{user.screenName}</a></span>
+                            <span className="user-real-name">
+                                {user.name}&nbsp;
+                            </span>
+
+                            <a href={userUrl} className="user-screen-name">
+                                @{user.screenName}
+                            </a>
                         </h3>
                         <p className="col-lg-10">{this.props.text}</p>
                     </div>

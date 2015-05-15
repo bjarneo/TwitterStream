@@ -9,13 +9,13 @@ body {
     color: #f0f0f0;
 }
 
-.userColor {
+.user-color {
     height: 5px;
     border: 0;
     margin: 0;
 }
 
-.userName a {
+.user-screen-name {
     color: #DD4E4E;
 }
 
