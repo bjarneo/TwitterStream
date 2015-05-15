@@ -10,8 +10,7 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.jsx?$/, loaders: ['jsx?harmony'], exclude: /node_modules/ }
-        ],
-        noParse: [/react/]
+        ]
     },
 
     output: {

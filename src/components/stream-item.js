@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var TwitterStreamItem = React.createClass({
     render: function() {
         var tweetNodes = this.props.data.map(function(tweet) {
@@ -32,42 +34,4 @@ var TwitterStreamItem = React.createClass({
     }
 });
 
-var TwitterStreamList = React.createClass({
-    render: function() {
-        return (
-            <div className="twitter-list message-wrap col-lg-12">
-                <TwitterStreamItem data={this.props.data}></TwitterStreamItem>
-            </div>
-        );
-    }
-});
-
-var TwitterStreamApp = React.createClass({
-    getInitialState: function() {
-        return {
-            tweets: []
-        };
-    },
-
-    componentDidMount: function() {
-        var socket = io();
-
-        socket.on('tweet', function(tweet) {
-            var tweets = this.state.tweets.slice();
-
-            tweets.unshift(tweet);
-
-            this.setState({ tweets: tweets });
-        }.bind(this));
-    },
-
-    render: function() {
-        return (
-            <div className="TwitterStream">
-                <TwitterStreamList data={this.state.tweets}/>
-            </div>
-        );
-    }
-});
-
-React.render(<TwitterStreamApp />, document.getElementById('TwitterStreamWrapper'));
+module.exports = TwitterStreamItem;
