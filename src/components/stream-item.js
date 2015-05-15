@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var TweetDate = require('./tweet-date');
 
 var TwitterStreamItem = React.createClass({
     displayName: 'StreamItem',
@@ -35,9 +36,9 @@ var TwitterStreamItem = React.createClass({
                         <a className="pull-left user-image" href="#">
                             <img className="media-object" src={user.profileImage} />
                         </a>
-                        <small className="pull-right time">
-                            <i className="glyphicon glyphicon-time"></i> {this.props.createdAt}
-                        </small>
+
+                        <TweetDate date={this.props.createdAt} />
+
                         <h3 className="media-heading">
                             {user.name} <span className="userName"><a href={userUrl}>@{user.screenName}</a></span>
                         </h3>

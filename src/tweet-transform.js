@@ -11,7 +11,7 @@ module.exports = function(tweet) {
             profileImage: tweet.user.profile_image_url
         },
         text: tweet.text,
-        createdAt: tweet.created_at
+        createdAt: (new Date(tweet.created_at)).toISOString()
     };
     /* jshint camelcase: true */
 };
