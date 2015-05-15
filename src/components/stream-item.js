@@ -31,7 +31,7 @@ var TwitterStreamItem = React.createClass({
         return (
             <div className="twitter-item">
                 <div className="media msg">
-                    <span className="userColor" style={userStyle}></span>
+                    <hr className="userColor" style={userStyle} />
                     <div className="media-body">
                         <a className="pull-left user-image" href="#">
                             <img className="media-object" src={user.profileImage} />
