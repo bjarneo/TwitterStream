@@ -12,7 +12,7 @@ try {
     envConfig = {};
 }
 
-module.exports = merge({}, envConfig, {
+module.exports = merge({}, {
     auth: {
         'consumer_key': process.env.CONSUMER_KEY,
         'consumer_secret': process.env.CONSUMER_SECRET,
@@ -28,4 +28,4 @@ module.exports = merge({}, envConfig, {
     history: {
         maxItems: process.env.MAX_TWEETS || 500
     }
-});
+}, envConfig);
