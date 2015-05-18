@@ -9,6 +9,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "lint": "jsxhint .",
     "test": "npm run lint",
     "build": "NODE_ENV=production webpack",
