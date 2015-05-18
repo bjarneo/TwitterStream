@@ -12,7 +12,7 @@ var fs = require('fs'),
     StreamApp = require('./src/components/stream-app'),
     TweetStream = require('node-tweet-stream'),
     transformTweet = require('./src/tweet-transform'),
-    config = require('./config.json');
+    config = require('./config.js');
 
 var port = process.env.PORT || 3000,
     app = express(),

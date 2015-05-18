@@ -1,4 +1,4 @@
 node_modules/
 public/js/
-config.json
+config.env.json
 npm-debug.log
