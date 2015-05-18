@@ -4,17 +4,31 @@
   "description": "Node.js app streaming twitter messages",
   "author": "Bjarne Oeverli",
   "repository": {
-      "type": "git",
-      "url": "git://github.com/bjarneo/TwitterStream.git"
+    "type": "git",
+    "url": "git://github.com/bjarneo/TwitterStream.git"
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "lint": "jsxhint .",
+    "test": "npm run lint",
+    "build": "NODE_ENV=production webpack",
+    "watch": "webpack --watch"
   },
   "dependencies": {
-      "express": "~4.10.5",
-      "socket.io": "~1.2.0",
-      "node-tweet-stream": "~1.6.0"
+    "express": "^4.12.3",
+    "lodash.merge": "^3.2.1",
+    "moment": "^2.10.3",
+    "node-jsx": "^0.13.3",
+    "node-tweet-stream": "^1.8.1",
+    "react": "^0.13.3",
+    "socket.io": "^1.3.5",
+    "socket.io-client": "^1.3.5"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "jsxhint": "^0.15.0",
+    "webpack": "^1.9.5"
+  }
 }

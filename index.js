@@ -1,20 +1,37 @@
 'use strict';
 
-var express = require('express'),
-    app = express(),
-    http = require('http').Server(app),
-    io = require('socket.io')(http),
-    config = require('./config.json'),
-    twitter = require('node-tweet-stream')(config);
+// Install JSX support so we can require React components
+require('node-jsx').install();
 
-// What keywords to track
-[
-    'JavaSript',
-    'node.js',
-    'nodejs',
-    'python'
-].forEach(function(keyword) {
+var fs = require('fs'),
+    http = require('http'),
+    express = require('express'),
+    socketIO = require('socket.io'),
+    path = require('path'),
+    React = require('react'),
+    StreamApp = require('./src/components/stream-app'),
+    TweetStream = require('node-tweet-stream'),
+    transformTweet = require('./src/tweet-transform'),
+    config = require('./config.js');
+
+var port = process.env.PORT || 3000,
+    app = express(),
+    server = http.Server(app),
+    io = socketIO(server),
+    twitter = new TweetStream(config.auth),
+    tweetHistory = [],
+    indexPath = path.join(__dirname, 'public', 'index.html'),
+    indexHtml = fs.readFileSync(indexPath, { encoding: 'utf8' });
+
+// Subscribe to configured keywords
+config.keywords.forEach(function(keyword) {
     twitter.track(keyword);
+});
+
+// Send tweet history to new clients
+io.on('connection', function(socket) {
+    socket.emit('item-limit', config.history.maxItems);
+    socket.emit('tweets', tweetHistory);
 });
 
 twitter.on('tweet', function(tweet) {
@@ -22,22 +39,36 @@ twitter.on('tweet', function(tweet) {
         return;
     }
 
-    io.emit('tweet', {
-        'user': {
-            'name': tweet.user.name,
-            'screenName': tweet.user.screen_name,
-            'backgroundColor': tweet.user.profile_background_color,
-            'profileImage': tweet.user.profile_image_url
-        },
-        'text': tweet.text,
-        'createdAt': tweet.created_at
-    });
+    tweet = transformTweet(tweet);
+    io.emit('tweets', [tweet]);
+
+    // Add tweet to history and ensure we are within the max items limit
+    tweetHistory.unshift(tweet);
+    while (tweetHistory.length >= config.history.maxItems) {
+        tweetHistory.pop();
+    }
+});
+
+app.get('/', function(req, res) {
+    var rendered = React.renderToString(
+        React.createElement(StreamApp, {
+            initialTweets: tweetHistory
+        })
+    );
+
+    var html = (indexHtml
+        .replace(/<!-- RenderTarget -->/, rendered)
+        .replace(/'<!-- initialData  -->'/, JSON.stringify({
+            tweets: tweetHistory
+        }))
+    );
+
+    res.set('Content-Type', 'text/html');
+    res.send(html);
 });
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+server.listen(port, function() {
+    console.log('http server listening on *:' + port);
 });
-
-http.listen(3000, console.log('listening on *:3000'));

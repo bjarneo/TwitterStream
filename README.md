@@ -2,30 +2,42 @@ TwitterStream
 =============
 
 Twitter stream based on Node.js and React.js. Just a React.js test.
-<br /><br />
+
 Feel free to test the app here: <a href="http://bjarneo.codes:3000/">http://bjarneo.codes:3000/</a>
-<br /><br />
+
 ## Installation
-You need to add a config-file to root folder. You can get this information from twitter: https://apps.twitter.com/
-###config.js
-```javascript
+
+You need to define some auth credentials for twitter to get started. These can either be defined as environment variables (see `config.js`) or in a JSON-file (`config.env.json`). You can get the auth credentials from Twitter: https://apps.twitter.com/.
+
+You also need to build the javascript client bundle by running `npm run build`
+
+### config.env.json
+
+```json
 {
-    "consumer_key": "your consumer key",
-    "consumer_secret": "your consumer secret",
-    "token": "your token",
-    "token_secret": "your token secret"
+    "auth": {
+        "consumer_key": "your consumer key",
+        "consumer_secret": "your consumer secret",
+        "token": "your token",
+        "token_secret": "your token secret"
+    },
+
+    "keywords": [
+        "node.js",
+        "javascript",
+        "python"
+    ],
+
+    "history": {
+        "maxItems": 500
+    }
 }
 ```
 
-###Note:
-Remember to run this command to compile the jsx. http://facebook.github.io/react/docs/tooling-integration.html#jsx <br/>
-```bash
-npm install -g react-tools
-jsx --watch public/js public/js-prod
-```
+### Usage:
 
-###Usage:
 ```bash
 npm install
-node index.js
+npm run build
+npm start
 ```
