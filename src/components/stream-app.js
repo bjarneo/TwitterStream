@@ -18,7 +18,7 @@ var TwitterStreamApp = React.createClass({
             tweets: this.props.initialTweets || [],
             itemLimit: 1000,
             stats: {
-                tweetCount: (this.props.initialTweets.length - 1) || 0
+                tweetCount: this.props.initialTweets.length || 0
             }
         };
     },
