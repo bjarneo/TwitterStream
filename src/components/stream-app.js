@@ -3,18 +3,23 @@
 var React = require('react');
 var io = require('socket.io-client');
 var TwitterStreamList = require('./stream-list');
+var TwitterStreamStats = require('./stream-stats');
 
 var TwitterStreamApp = React.createClass({
     displayName: 'StreamApp',
 
     propTypes: {
-        initialTweets: React.PropTypes.array
+        initialTweets: React.PropTypes.array,
+        tweetCount: React.PropTypes.number
     },
 
     getInitialState: function() {
         return {
             tweets: this.props.initialTweets || [],
-            itemLimit: 1000
+            itemLimit: 1000,
+            stats: {
+                tweetCount: (this.props.initialTweets.length - 1) || 0
+            }
         };
     },
 
@@ -24,12 +29,18 @@ var TwitterStreamApp = React.createClass({
 
     onTweetsReceived: function(items) {
         var tweets = [].concat(items, this.state.tweets.slice());
+        var tweetCount = this.state.stats.tweetCount + 1;
 
         while (tweets.length >= this.state.itemLimit) {
             tweets.pop();
         }
 
-        this.setState({ tweets: tweets });
+        this.setState({
+            tweets: tweets,
+            stats: {
+                tweetCount: tweetCount
+            }
+        });
     },
 
     componentDidMount: function() {
@@ -46,7 +57,10 @@ var TwitterStreamApp = React.createClass({
     /* jshint quotmark:false */
     render: function() {
         return (
-            <TwitterStreamList tweets={this.state.tweets} />
+            <div>
+                <TwitterStreamStats stats={this.state.stats} />
+                <TwitterStreamList tweets={this.state.tweets} />
+            </div>
         );
     }
 });
