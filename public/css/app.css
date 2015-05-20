@@ -9,6 +9,30 @@ body {
     color: #f0f0f0;
 }
 
+.navbar {
+    margin: 10px 15px;
+}
+
+.navbar-inverse {
+    background-color: #323236;
+    border: 0px solid transparent;
+}
+
+.nav-pills li {
+    height: 50px;
+    padding: 10px 0px;
+}
+
+.nav-pills li span.glyphicon {
+    color: #ddd;
+    font-size: 25px;
+}
+
+.nav-pills li span.badge {
+    margin: 0 10px;
+    font-size: 13px;
+}
+
 .user-screen-name {
     color: #DD4E4E;
 }
