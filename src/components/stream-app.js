@@ -29,7 +29,6 @@ var TwitterStreamApp = React.createClass({
 
     onTweetsReceived: function(items) {
         var tweets = [].concat(items, this.state.tweets.slice());
-        var tweetCount = this.state.stats.tweetCount + 1;
 
         while (tweets.length >= this.state.itemLimit) {
             tweets.pop();
@@ -38,7 +37,7 @@ var TwitterStreamApp = React.createClass({
         this.setState({
             tweets: tweets,
             stats: {
-                tweetCount: tweetCount
+                tweetCount: this.state.stats.tweetCount + 1
             }
         });
     },
