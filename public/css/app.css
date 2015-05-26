@@ -42,7 +42,7 @@ body {
     margin: 0 0 10px 0;
     background-color: #323236;
     overflow: hidden;
-    border-top: 5px solid transparent;
+    border-left: 5px solid transparent;
     border-radius: 3px;
     color: #f0f0f0;
     font-size: 14pt;
